@@ -1,5 +1,6 @@
 package com.mym.healingenv.service;
 
+import com.mym.healingenv.common.Result;
 import com.mym.healingenv.entity.Dimension;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IDimensionService extends IService<Dimension> {
 
+    Result<?> Dlist();
+
+    Result<?> add(Dimension dimension);
+
+    Result<?> resetD(Dimension dimension);
+
+    Result<?> delete(Long id);
 }

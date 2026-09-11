@@ -59,7 +59,7 @@ public class Indicator implements Serializable {
      * 1控制项 2基本项 3加分项
      */
     @TableField("type")
-    private Byte type;
+    private Integer type;
 
     /**
      * 满分(控制项为0)

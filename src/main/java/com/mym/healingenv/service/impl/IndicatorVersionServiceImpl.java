@@ -1,10 +1,13 @@
 package com.mym.healingenv.service.impl;
 
+import com.mym.healingenv.common.Result;
 import com.mym.healingenv.entity.IndicatorVersion;
 import com.mym.healingenv.mapper.IndicatorVersionMapper;
 import com.mym.healingenv.service.IIndicatorVersionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,4 +20,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class IndicatorVersionServiceImpl extends ServiceImpl<IndicatorVersionMapper, IndicatorVersion> implements IIndicatorVersionService {
 
+    @Override
+    public Result<?> ListAll() {
+        List<IndicatorVersion> list = lambdaQuery()
+                .orderByDesc(IndicatorVersion::getCreateTime)
+                .list();
+        return Result.success(list);
+    }
 }

@@ -46,7 +46,7 @@ public class IndicatorVersion implements Serializable {
      * 0草稿 1发布
      */
     @TableField("status")
-    private Byte status;
+    private Integer status;
 
     @TableField("create_time")
     private LocalDateTime createTime;

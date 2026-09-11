@@ -71,7 +71,7 @@ public class User implements Serializable {
      * 0禁用 1启用
      */
     @TableField("status")
-    private Byte status;
+    private Integer status;
 
     /**
      * 创建时间
@@ -90,5 +90,5 @@ public class User implements Serializable {
      */
     @TableField("deleted")
     @TableLogic
-    private Byte deleted;
+    private Integer deleted;
 }

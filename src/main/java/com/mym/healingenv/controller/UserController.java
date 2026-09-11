@@ -2,14 +2,14 @@ package com.mym.healingenv.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mym.healingenv.common.RequireRole;
 import com.mym.healingenv.common.Result;
+import com.mym.healingenv.common.UserRole;
 import com.mym.healingenv.entity.User;
 import com.mym.healingenv.service.IUserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("api/user")
+@RequireRole(UserRole.ADMIN)
 public class UserController {
     @Autowired
     private IUserService userService;
@@ -53,5 +54,31 @@ public class UserController {
             user.setPasswordHash(null);
             return user;
         }));
+    }
+
+    /**
+     * 新增用户
+     * POST /api/user
+     */
+    @PostMapping
+    public Result<?> add(@Valid @RequestBody User user){
+        return userService.add(user);
+    }
+    /**
+     * 删除用户（逻辑删除）
+     * DELETE /api/user/{id}
+     */
+    @DeleteMapping("/{id}")
+    public Result<?> delete(@PathVariable Long id){
+        return userService.delete(id);
+    }
+
+    /**
+     * 重置密码
+     * PUT /api/user/reset/{id}
+     */
+    @PutMapping("/reset/{id}")
+    public Result<?> reset(@PathVariable Long id){
+        return userService.resetPassword(id);
     }
 }

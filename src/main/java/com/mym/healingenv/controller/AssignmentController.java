@@ -1,5 +1,7 @@
 package com.mym.healingenv.controller;
 
+import com.mym.healingenv.common.RequireRole;
+import com.mym.healingenv.common.UserRole;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/assignment")
+@RequireRole({UserRole.ADMIN, UserRole.PROJECT_MANAGER})
 public class AssignmentController {
 
 }

@@ -13,4 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IResultService extends IService<Result> {
 
+    com.mym.healingenv.common.Result<?> calculate(Long taskId);
+
+    com.mym.healingenv.common.Result<?> getByTask(Long taskId);
 }

@@ -1,5 +1,6 @@
 package com.mym.healingenv.service;
 
+import com.mym.healingenv.common.Result;
 import com.mym.healingenv.entity.Indicator;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IIndicatorService extends IService<Indicator> {
 
+    Result<?> listOfVersion(Long versionId, Long dimensionId);
+
+    Result<?> add(Indicator indicator);
+
+    Result<?> reset(Indicator indicator);
+
+    Result<?> delete(Long id);
+
+    Result<?> publish(String versionNo, String remark);
 }
